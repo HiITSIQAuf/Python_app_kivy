@@ -1,0 +1,170 @@
+#: import Thumb kivymd.uix.selectioncontrol.Thumb
+
+MDScreen:
+
+    MDBottomNavigation:
+        panel_color: "#2C9D06"
+        selected_color_background: "#97ecf8"
+        text_color_active: "white"
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Login_for_system'
+            icon: 'login-variant'
+            MDFloatLayout:
+				MDLabel:
+					id: label
+					text: "Welcome"
+					pos_hint: {"center_y": -1}
+					halign: "center"
+					font_style: "H4"
+					bold: True
+				MDLabel:
+					id: label1
+					text: email.text
+					pos_hint: {"center_y": -1}
+					halign: "center"
+					font_style: "H5"
+				Image:
+					id: image
+					source: app.l
+					pos_hint: {"center_x": .5, "center_y": .8}
+					size_hint: .4,.4
+				MDTextField:
+					id: email
+					hint_text: "Email"
+					pos_hint: {"center_x": .5, "center_y": .6}
+					size_hint_x: .8
+					text_color: "Pink"
+					line_color_focus: 1,0,1,1
+					on_focus: app.email()
+				MDTextField:
+					id: password
+					hint_text: "Password"
+					pos_hint: {"center_x": .5, "center_y": .48}
+					size_hint_x: .8
+					color_mode: "custom"
+					line_color_focus: 1,0,1,1
+					password: True
+					on_focus: app.password()
+				MDRaisedButton:
+					id: login
+					text: "Login"
+					pos_hint: {"center_x": .5, "center_y": .3}
+					size_hint_x: .8
+					md_bg_color: 1,0,0,1
+					on_release: app.login(email,password,login, image, label, label1)
+					on_press: app.send_data(email.text, password.text)
+
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Video-darslik'
+            icon: 'video'
+            md_bg_color: 1,0,0,8
+            MDSmartTile:
+                radius: 50
+                source: "images/icon.png"
+                pos_hint: {"center_x": .9, "center_y": .9}
+                on_press: app.video_playback()
+                size_hint: None, None
+                size: "32dp", "32dp"
+
+			MDFloatLayout:
+
+			    MDRelativeLayout:
+			        id: layout
+			        size_hint: 1, None
+			        height: (root.width/16)*9
+			        pos_hint: {"bottom": 1}
+			        MDRelativeLayout:
+			    	    id: controls
+			    	    size_hint: 1, None
+			    	    pos_hint: {"center_x": .5 ,"bottom": 1}
+			    	    md_bg_color: 0,0,0, 0.3
+			    	    MDLabel:
+			    	        id: time_duration
+			    	        font_size: "12sp"
+			    	        color: 1,1,1,1
+			    	        bold: True
+			    	        pos_hint: {"center_y": .4}
+			    	        padding_x: "20sp"
+			    	    IconButton:
+			    	        id: play_pause_button
+			    	        icon: "play"
+			    	        pos_hint: {"center_x": .5, "center_y": .4}
+			    	        theme_text_color: "Custom"
+			    	        text_color: 1,1,1,1
+			    	        size_hint: None, None
+			    	        size: self.texture_size
+			    	        on_release:
+			    	            app.ro(self)
+
+            ScreenManager:
+				Heoo:
+
+		MDBottomNavigationItem:
+		    name: 'screen 3'
+		    text: 'School Info'
+		    icon: 'ab-testing'
+		    md_bg_color: "gray"
+		    MDLabel:
+		        text: "O'quv kurslari "
+		        text_color_active: "white"
+		        font_style: "H4"
+		        pos_hint: {'center_x': .7, 'center_y': .7}
+		        allow_stretch: True
+		    MDIcon:
+		        icon: "pot-steam"
+		        pos_hint: {'center_x': .8 , 'center_y': .7}
+		    MDLabel:
+		        text: "IT sohasidagi yangi ko'nikmalarni o'zlashtirishni, malaka oshirishni va ko'proq pul ishlashni xohlaysanmi? Biz senga yordam beramiz! Bizning malakali o'qituvchilarimiz senga axborot texnologiyalarining barcha tendentsiyalari to'g'risida ma'lumot va ko'nikmalar beradilar. Biz bilan sen eng zamonaviy darsliklardan foydalangan holda IT-bilimlarga ega bo'lasan. Marhamat, quyida keltirilgan, bugungi kundagi eng mashhur IT yo'nalishlardan birini tanla va hayotingni hoziroq yaxshi tarafga bur!"
+		        halign: 'center'
+		        text_color_active: "white"
+		    MDScrollView:
+		        scroll_timeout : 100
+		    MDSpinner:
+		        palette:
+		            [0.28627450980392155, 0.8431372549019608, 0.596078431372549, 1],             [0.3568627450980392, 0.3215686274509804, 0.8666666666666667, 1],             [0.8862745098039215, 0.36470588235294116, 0.592156862745098, 1],             [0.8784313725490196, 0.9058823529411765, 0.40784313725490196, 1],
+		    MDSpinner:
+		        size_hint: None, None
+		        size: dp(46), dp(46)
+		        pos_hint: {'center_x': .5, 'center_y': .2}
+		        active: True if check.active else False
+		    MDCheckbox:
+		        id: check
+		        size_hint: None, None
+		        size: dp(48), dp(48)
+		        pos_hint: {'center_x': .5, 'center_y': .1}
+		        active: False
+
+<AddVideo>:
+	name: 'video'
+	MDSmartTile:
+        radius: 24
+        box_radius: [0, 0, 24, 24]
+        box_color: 1, 1, 1, .2
+        source: "images/cake.jpg"
+        pos_hint: {"center_x": .5, "center_y": .5}
+        on_press: root.manager.current = 'screen 1'
+        size_hint: None, None
+        size: "320dp", "320dp"
+        MDIconButton:
+            icon: "heart-outline"
+            theme_icon_color: "Custom"
+            icon_color: 1, 0, 0, 1
+            pos_hint: {"center_y": .5}
+            on_release: self.icon = "heart" if self.icon == "heart-outline" else "heart-outline"
+        MDLabel:
+            text: "Kompyuter bilan tanishing."
+            bold: True
+            color: 1, 1, 1, 1
+            text_bg_color: 1,0,0,4
+
+<Heoo>:
+    name: 'screen 1'
+    direction: "bottom"
+    on_current_slide: root.r(self.index)
+
+
+
+
